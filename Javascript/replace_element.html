@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<ul id="menu">
+		<li>Home</li>
+		<li>product</li>
+		<li>About us</li>
+	</ul>
+	<script>
+		let parent=document.getElementById("menu");
+		let item=document.createElement("li");
+		item.textContent="service";
+		let rep=parent.firstElementChild.nextElementSibling;
+		parent.replaceChild(item,rep);
+	</script>
+
+</body>
+</html>

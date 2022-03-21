@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>HTML Form</title>
+</head>
+<body>
+    <h3> Enter the detail of customer</h3>
+	<form>
+		<label for="fname">First_name</label>
+		<input type="text" id="fname" value="Rahul" ><br>
+		<label for="lname">mobileNumber </label>
+		<input type="text" id="lname" value="Sahu">
+        <br>
+        <label for="lname">address </label>
+		<input type="text" id="lname" value="Sahu">
+	</form>
+    Current Time:
+    <input type="text" id="currentTime">
+     
+    <script>
+    var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      document.getElementById("currentTime").value = time;
+    </script>
+    <br>
+
+click for list of element:
+<a href="assig2.html">link text</a>
+</body>
+</html>

@@ -1,0 +1,269 @@
+Microsoft Windows [Version 10.0.18363.1556]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\Krishna Sahu>mongo
+MongoDB shell version v5.0.6
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("0507c1c7-fcd2-4829-92a3-fe8a80c9cff5") }
+MongoDB server version: 5.0.6
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting:
+        2022-02-22T09:34:20.089+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs
+admin   0.000GB
+config  0.000GB
+ecom    0.000GB
+local   0.000GB
+> use ecom
+switched to db ecom
+> show collections
+products
+review
+users
+> db.createcollection('product')
+uncaught exception: TypeError: db.createcollection is not a function :
+@(shell):1:1
+> db.createCollection('product')
+{ "ok" : 1 }
+> show collections
+product
+products
+review
+users
+> db.product.drop()
+true
+> show collections
+products
+review
+users
+> db.products.drop()
+true
+> show collections
+review
+users
+> db.createCollection('products')
+{ "ok" : 1 }
+> show collections
+products
+review
+users
+> db.products.find()
+> db.products.insertOne({name:laptop, price:50000})
+uncaught exception: ReferenceError: laptop is not defined :
+@(shell):1:24
+> db.products.insertOne({name:'laptop', price:50000})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("62146f9e6521b13342ab99aa")
+}
+> db.products.find()
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+> db.products.insertOne({name:'Mobile', price:18000})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6214700f6521b13342ab99ab")
+}
+> db.products.find()
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("6214700f6521b13342ab99ab"), "name" : "Mobile", "price" : 18000 }
+> db.products.insertOne({ price:18000})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6214704b6521b13342ab99ac")
+}
+> db.products.findOne({price:50000})
+{
+        "_id" : ObjectId("62146f9e6521b13342ab99aa"),
+        "name" : "laptop",
+        "price" : 50000
+}
+> db.products.insertMany([{name:'mouse',price:2000},{name:pendrive,price:270}])
+uncaught exception: ReferenceError: pendrive is not defined :
+@(shell):1:52
+> db.products.insertMany([{name:'mouse',price:2000},{name:'pendrive',price:270}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("621471226521b13342ab99ad"),
+                ObjectId("621471226521b13342ab99ae")
+        ]
+}
+> db.collection.find()
+> db.products.find()
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("6214700f6521b13342ab99ab"), "name" : "Mobile", "price" : 18000 }
+{ "_id" : ObjectId("6214704b6521b13342ab99ac"), "price" : 18000 }
+{ "_id" : ObjectId("621471226521b13342ab99ad"), "name" : "mouse", "price" : 2000 }
+{ "_id" : ObjectId("621471226521b13342ab99ae"), "name" : "pendrive", "price" : 270 }
+> db.products.find().pretty()
+{
+        "_id" : ObjectId("62146f9e6521b13342ab99aa"),
+        "name" : "laptop",
+        "price" : 50000
+}
+{
+        "_id" : ObjectId("6214700f6521b13342ab99ab"),
+        "name" : "Mobile",
+        "price" : 18000
+}
+{ "_id" : ObjectId("6214704b6521b13342ab99ac"), "price" : 18000 }
+{
+        "_id" : ObjectId("621471226521b13342ab99ad"),
+        "name" : "mouse",
+        "price" : 2000
+}
+{
+        "_id" : ObjectId("621471226521b13342ab99ae"),
+        "name" : "pendrive",
+        "price" : 270
+}
+> db.products.find()
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("6214700f6521b13342ab99ab"), "name" : "Mobile", "price" : 18000 }
+{ "_id" : ObjectId("6214704b6521b13342ab99ac"), "price" : 18000 }
+{ "_id" : ObjectId("621471226521b13342ab99ad"), "name" : "mouse", "price" : 2000 }
+{ "_id" : ObjectId("621471226521b13342ab99ae"), "name" : "pendrive", "price" : 270 }
+> db.products.update({_id:ObjectId("621471226521b13342ab99ae"},{$set:{name:'TV'}})
+...
+... );
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:59
+> db.products.update({_id:ObjectId("621471226521b13342ab99ae")},{$set:{name:'TV'}})  );
+uncaught exception: SyntaxError: unexpected token: ')' :
+@(shell):1:83
+> db.products.update({_id:ObjectId("621471226521b13342ab99ae")},{$set:{name:'TV'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.products.find()
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("6214700f6521b13342ab99ab"), "name" : "Mobile", "price" : 18000 }
+{ "_id" : ObjectId("6214704b6521b13342ab99ac"), "price" : 18000 }
+{ "_id" : ObjectId("621471226521b13342ab99ad"), "name" : "mouse", "price" : 2000 }
+{ "_id" : ObjectId("621471226521b13342ab99ae"), "name" : "TV", "price" : 270 }
+> db.products.deleteOne({_id:ObjectId("621471226521b13342ab99ae")})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.products.find()
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("6214700f6521b13342ab99ab"), "name" : "Mobile", "price" : 18000 }
+{ "_id" : ObjectId("6214704b6521b13342ab99ac"), "price" : 18000 }
+{ "_id" : ObjectId("621471226521b13342ab99ad"), "name" : "mouse", "price" : 2000 }
+> db.product.deleteMany({_id:{$in:[ObjectId("6214704b6521b13342ab99ac"),ObjectId("6214704b6521b13342ab99ac")]}})
+{ "acknowledged" : true, "deletedCount" : 0 }
+> db.products.find()
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("6214700f6521b13342ab99ab"), "name" : "Mobile", "price" : 18000 }
+{ "_id" : ObjectId("6214704b6521b13342ab99ac"), "price" : 18000 }
+{ "_id" : ObjectId("621471226521b13342ab99ad"), "name" : "mouse", "price" : 2000 }
+> db.product.deleteMany({_id:{$in:[ObjectId("6214704b6521b13342ab99ac"),ObjectId("621471226521b13342ab99ad")]}})
+{ "acknowledged" : true, "deletedCount" : 0 }
+> db.products.find()
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("6214700f6521b13342ab99ab"), "name" : "Mobile", "price" : 18000 }
+{ "_id" : ObjectId("6214704b6521b13342ab99ac"), "price" : 18000 }
+{ "_id" : ObjectId("621471226521b13342ab99ad"), "name" : "mouse", "price" : 2000 }
+> db.products.delete({ObjectId("6214704b6521b13342ab99ac")})
+uncaught exception: SyntaxError: missing formal parameter :
+@(shell):1:29
+> db.products.deleteOne({ObjectId("6214704b6521b13342ab99ac")})
+uncaught exception: SyntaxError: missing formal parameter :
+@(shell):1:32
+> db.products.deleteMany({_id:{$in:[ObjectId("6214704b6521b13342ab99ac"),ObjectId("621471226521b13342ab99ad")]}})
+{ "acknowledged" : true, "deletedCount" : 2 }
+> db.products.find()
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("6214700f6521b13342ab99ab"), "name" : "Mobile", "price" : 18000 }
+> db.products.deleteOne({_id:ObjectId("6214700f6521b13342ab99ab")})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.products.find()
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+> db.products.insertOne({name:'TV',price:50000})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("62147f376521b13342ab99af")
+}
+> db.products.find()
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("62147f376521b13342ab99af"), "name" : "TV", "price" : 50000 }
+> db.products.insertOne({name:'Shoes',price:5000})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("621481e16521b13342ab99b0")
+}
+> db.products.insertOne({name:'Jeans',price:1400})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("621481fe6521b13342ab99b1")
+}
+> db.products.find()
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("62147f376521b13342ab99af"), "name" : "TV", "price" : 50000 }
+{ "_id" : ObjectId("621481e16521b13342ab99b0"), "name" : "Shoes", "price" : 5000 }
+{ "_id" : ObjectId("621481fe6521b13342ab99b1"), "name" : "Jeans", "price" : 1400 }
+> db.products.find({price{$eq:50000}})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:23
+> db.products.find({price:{$eq:50000}})
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("62147f376521b13342ab99af"), "name" : "TV", "price" : 50000 }
+> db.products.find({price:{$gt:5000}})
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("62147f376521b13342ab99af"), "name" : "TV", "price" : 50000 }
+> db.products.find({price:{$gte:5000}})
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("62147f376521b13342ab99af"), "name" : "TV", "price" : 50000 }
+{ "_id" : ObjectId("621481e16521b13342ab99b0"), "name" : "Shoes", "price" : 5000 }
+> db.products.find({price:{$lt:5000}})
+{ "_id" : ObjectId("621481fe6521b13342ab99b1"), "name" : "Jeans", "price" : 1400 }
+> db.products.find({price:{$lte:5000}})
+{ "_id" : ObjectId("621481e16521b13342ab99b0"), "name" : "Shoes", "price" : 5000 }
+{ "_id" : ObjectId("621481fe6521b13342ab99b1"), "name" : "Jeans", "price" : 1400 }
+> db.products.find({price:{$ne:5000}})
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("62147f376521b13342ab99af"), "name" : "TV", "price" : 50000 }
+{ "_id" : ObjectId("621481fe6521b13342ab99b1"), "name" : "Jeans", "price" : 1400 }
+> db.products.find({price:{$nin:5000}})
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "$nin needs an array",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.products.find({$and:[{price:{$eq:1400}},{name:{$eq:Jeans}}]})
+uncaught exception: ReferenceError: Jeans is not defined :
+@(shell):1:51
+> db.products.find({$and:[{price:{$eq:1400}},{name:{$eq:'Jeans'}}]})
+{ "_id" : ObjectId("621481fe6521b13342ab99b1"), "name" : "Jeans", "price" : 1400 }
+> db.products.find({$or:[{price:{$eq:1400}},{name:{$eq:'Jeans'}}]})
+{ "_id" : ObjectId("621481fe6521b13342ab99b1"), "name" : "Jeans", "price" : 1400 }
+> db.products.find({$or:[{price:{$eq:50000}},{name:{$eq:'Jeans'}}]})
+{ "_id" : ObjectId("62146f9e6521b13342ab99aa"), "name" : "laptop", "price" : 50000 }
+{ "_id" : ObjectId("62147f376521b13342ab99af"), "name" : "TV", "price" : 50000 }
+{ "_id" : ObjectId("621481fe6521b13342ab99b1"), "name" : "Jeans", "price" : 1400 }
+> db.products.find({$nor:[{price:{$eq:50000}},{name:{$eq:'Jeans'}}]})
+{ "_id" : ObjectId("621481e16521b13342ab99b0"), "name" : "Shoes", "price" : 5000 }
+> db.products.find({$not:[{price:{$eq:50000}},{name:{$eq:'Jeans'}}]})
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "unknown top level operator: $not. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+>

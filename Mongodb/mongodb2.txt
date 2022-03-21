@@ -1,0 +1,601 @@
+Microsoft Windows [Version 10.0.18363.1556]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\Krishna Sahu>mongo
+MongoDB shell version v5.0.6
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("f7f7b835-c576-4ebd-a38e-076254f47e17") }
+MongoDB server version: 5.0.6
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting:
+        2022-02-22T09:34:20.089+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> use krishna
+switched to db krishna
+> for(let i=1;i<5000;i++){
+... db.krishna.insert({name:'product '+i, price: i})}
+WriteResult({ "nInserted" : 1 })
+> db.krishna.find()
+{ "_id" : ObjectId("62148bb639303fdd5fe9e847"), "name" : "product 1", "price" : 1 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e848"), "name" : "product 2", "price" : 2 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e849"), "name" : "product 3", "price" : 3 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e84a"), "name" : "product 4", "price" : 4 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e84b"), "name" : "product 5", "price" : 5 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e84c"), "name" : "product 6", "price" : 6 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e84d"), "name" : "product 7", "price" : 7 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e84e"), "name" : "product 8", "price" : 8 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e84f"), "name" : "product 9", "price" : 9 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e850"), "name" : "product 10", "price" : 10 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e851"), "name" : "product 11", "price" : 11 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e852"), "name" : "product 12", "price" : 12 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e853"), "name" : "product 13", "price" : 13 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e854"), "name" : "product 14", "price" : 14 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e855"), "name" : "product 15", "price" : 15 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e856"), "name" : "product 16", "price" : 16 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e857"), "name" : "product 17", "price" : 17 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e858"), "name" : "product 18", "price" : 18 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e859"), "name" : "product 19", "price" : 19 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e85a"), "name" : "product 20", "price" : 20 }
+Type "it" for more
+> db.krishna.find({price:69})
+{ "_id" : ObjectId("62148bb639303fdd5fe9e88b"), "name" : "product 69", "price" : 69 }
+> db.krishna.find({name:'product 2000'})
+{ "_id" : ObjectId("62148bb839303fdd5fe9f016"), "name" : "product 2000", "price" : 2000 }
+> db.krishna.find({name:'product 2000'}).explain('executionStats')
+{
+        "explainVersion" : "1",
+        "queryPlanner" : {
+                "namespace" : "krishna.krishna",
+                "indexFilterSet" : false,
+                "parsedQuery" : {
+                        "name" : {
+                                "$eq" : "product 2000"
+                        }
+                },
+                "maxIndexedOrSolutionsReached" : false,
+                "maxIndexedAndSolutionsReached" : false,
+                "maxScansToExplodeReached" : false,
+                "winningPlan" : {
+                        "stage" : "COLLSCAN",
+                        "filter" : {
+                                "name" : {
+                                        "$eq" : "product 2000"
+                                }
+                        },
+                        "direction" : "forward"
+                },
+                "rejectedPlans" : [ ]
+        },
+        "executionStats" : {
+                "executionSuccess" : true,
+                "nReturned" : 1,
+                "executionTimeMillis" : 180,
+                "totalKeysExamined" : 0,
+                "totalDocsExamined" : 4999,
+                "executionStages" : {
+                        "stage" : "COLLSCAN",
+                        "filter" : {
+                                "name" : {
+                                        "$eq" : "product 2000"
+                                }
+                        },
+                        "nReturned" : 1,
+                        "executionTimeMillisEstimate" : 2,
+                        "works" : 5001,
+                        "advanced" : 1,
+                        "needTime" : 4999,
+                        "needYield" : 0,
+                        "saveState" : 6,
+                        "restoreState" : 6,
+                        "isEOF" : 1,
+                        "direction" : "forward",
+                        "docsExamined" : 4999
+                }
+        },
+        "command" : {
+                "find" : "krishna",
+                "filter" : {
+                        "name" : "product 2000"
+                },
+                "$db" : "krishna"
+        },
+        "serverInfo" : {
+                "host" : "DESKTOP-AA08Q7S",
+                "port" : 27017,
+                "version" : "5.0.6",
+                "gitVersion" : "212a8dbb47f07427dae194a9c75baec1d81d9259"
+        },
+        "serverParameters" : {
+                "internalQueryFacetBufferSizeBytes" : 104857600,
+                "internalQueryFacetMaxOutputDocSizeBytes" : 104857600,
+                "internalLookupStageIntermediateDocumentMaxSizeBytes" : 104857600,
+                "internalDocumentSourceGroupMaxMemoryBytes" : 104857600,
+                "internalQueryMaxBlockingSortMemoryUsageBytes" : 104857600,
+                "internalQueryProhibitBlockingMergeOnMongoS" : 0,
+                "internalQueryMaxAddToSetBytes" : 104857600,
+                "internalDocumentSourceSetWindowFieldsMaxMemoryBytes" : 104857600
+        },
+        "ok" : 1
+}
+> db.krishna.createIndex({nmae:1})
+{
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "createdCollectionAutomatically" : false,
+        "ok" : 1
+}
+> db.krishna.createIndex({name:1})
+{
+        "numIndexesBefore" : 2,
+        "numIndexesAfter" : 3,
+        "createdCollectionAutomatically" : false,
+        "ok" : 1
+}
+> db.krishna.find()
+{ "_id" : ObjectId("62148bb639303fdd5fe9e847"), "name" : "product 1", "price" : 1 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e848"), "name" : "product 2", "price" : 2 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e849"), "name" : "product 3", "price" : 3 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e84a"), "name" : "product 4", "price" : 4 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e84b"), "name" : "product 5", "price" : 5 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e84c"), "name" : "product 6", "price" : 6 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e84d"), "name" : "product 7", "price" : 7 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e84e"), "name" : "product 8", "price" : 8 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e84f"), "name" : "product 9", "price" : 9 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e850"), "name" : "product 10", "price" : 10 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e851"), "name" : "product 11", "price" : 11 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e852"), "name" : "product 12", "price" : 12 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e853"), "name" : "product 13", "price" : 13 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e854"), "name" : "product 14", "price" : 14 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e855"), "name" : "product 15", "price" : 15 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e856"), "name" : "product 16", "price" : 16 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e857"), "name" : "product 17", "price" : 17 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e858"), "name" : "product 18", "price" : 18 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e859"), "name" : "product 19", "price" : 19 }
+{ "_id" : ObjectId("62148bb639303fdd5fe9e85a"), "name" : "product 20", "price" : 20 }
+Type "it" for more
+> db.krishna.find().pretty()
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e847"),
+        "name" : "product 1",
+        "price" : 1
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e848"),
+        "name" : "product 2",
+        "price" : 2
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e849"),
+        "name" : "product 3",
+        "price" : 3
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e84a"),
+        "name" : "product 4",
+        "price" : 4
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e84b"),
+        "name" : "product 5",
+        "price" : 5
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e84c"),
+        "name" : "product 6",
+        "price" : 6
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e84d"),
+        "name" : "product 7",
+        "price" : 7
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e84e"),
+        "name" : "product 8",
+        "price" : 8
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e84f"),
+        "name" : "product 9",
+        "price" : 9
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e850"),
+        "name" : "product 10",
+        "price" : 10
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e851"),
+        "name" : "product 11",
+        "price" : 11
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e852"),
+        "name" : "product 12",
+        "price" : 12
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e853"),
+        "name" : "product 13",
+        "price" : 13
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e854"),
+        "name" : "product 14",
+        "price" : 14
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e855"),
+        "name" : "product 15",
+        "price" : 15
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e856"),
+        "name" : "product 16",
+        "price" : 16
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e857"),
+        "name" : "product 17",
+        "price" : 17
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e858"),
+        "name" : "product 18",
+        "price" : 18
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e859"),
+        "name" : "product 19",
+        "price" : 19
+}
+{
+        "_id" : ObjectId("62148bb639303fdd5fe9e85a"),
+        "name" : "product 20",
+        "price" : 20
+}
+Type "it" for more
+> db.krishna.find({name:'product 2000'}).explain('executionStats')
+{
+        "explainVersion" : "1",
+        "queryPlanner" : {
+                "namespace" : "krishna.krishna",
+                "indexFilterSet" : false,
+                "parsedQuery" : {
+                        "name" : {
+                                "$eq" : "product 2000"
+                        }
+                },
+                "maxIndexedOrSolutionsReached" : false,
+                "maxIndexedAndSolutionsReached" : false,
+                "maxScansToExplodeReached" : false,
+                "winningPlan" : {
+                        "stage" : "FETCH",
+                        "inputStage" : {
+                                "stage" : "IXSCAN",
+                                "keyPattern" : {
+                                        "name" : 1
+                                },
+                                "indexName" : "name_1",
+                                "isMultiKey" : false,
+                                "multiKeyPaths" : {
+                                        "name" : [ ]
+                                },
+                                "isUnique" : false,
+                                "isSparse" : false,
+                                "isPartial" : false,
+                                "indexVersion" : 2,
+                                "direction" : "forward",
+                                "indexBounds" : {
+                                        "name" : [
+                                                "[\"product 2000\", \"product 2000\"]"
+                                        ]
+                                }
+                        }
+                },
+                "rejectedPlans" : [ ]
+        },
+        "executionStats" : {
+                "executionSuccess" : true,
+                "nReturned" : 1,
+                "executionTimeMillis" : 205,
+                "totalKeysExamined" : 1,
+                "totalDocsExamined" : 1,
+                "executionStages" : {
+                        "stage" : "FETCH",
+                        "nReturned" : 1,
+                        "executionTimeMillisEstimate" : 176,
+                        "works" : 2,
+                        "advanced" : 1,
+                        "needTime" : 0,
+                        "needYield" : 0,
+                        "saveState" : 2,
+                        "restoreState" : 2,
+                        "isEOF" : 1,
+                        "docsExamined" : 1,
+                        "alreadyHasObj" : 0,
+                        "inputStage" : {
+                                "stage" : "IXSCAN",
+                                "nReturned" : 1,
+                                "executionTimeMillisEstimate" : 176,
+                                "works" : 2,
+                                "advanced" : 1,
+                                "needTime" : 0,
+                                "needYield" : 0,
+                                "saveState" : 2,
+                                "restoreState" : 2,
+                                "isEOF" : 1,
+                                "keyPattern" : {
+                                        "name" : 1
+                                },
+                                "indexName" : "name_1",
+                                "isMultiKey" : false,
+                                "multiKeyPaths" : {
+                                        "name" : [ ]
+                                },
+                                "isUnique" : false,
+                                "isSparse" : false,
+                                "isPartial" : false,
+                                "indexVersion" : 2,
+                                "direction" : "forward",
+                                "indexBounds" : {
+                                        "name" : [
+                                                "[\"product 2000\", \"product 2000\"]"
+                                        ]
+                                },
+                                "keysExamined" : 1,
+                                "seeks" : 1,
+                                "dupsTested" : 0,
+                                "dupsDropped" : 0
+                        }
+                }
+        },
+        "command" : {
+                "find" : "krishna",
+                "filter" : {
+                        "name" : "product 2000"
+                },
+                "$db" : "krishna"
+        },
+        "serverInfo" : {
+                "host" : "DESKTOP-AA08Q7S",
+                "port" : 27017,
+                "version" : "5.0.6",
+                "gitVersion" : "212a8dbb47f07427dae194a9c75baec1d81d9259"
+        },
+        "serverParameters" : {
+                "internalQueryFacetBufferSizeBytes" : 104857600,
+                "internalQueryFacetMaxOutputDocSizeBytes" : 104857600,
+                "internalLookupStageIntermediateDocumentMaxSizeBytes" : 104857600,
+                "internalDocumentSourceGroupMaxMemoryBytes" : 104857600,
+                "internalQueryMaxBlockingSortMemoryUsageBytes" : 104857600,
+                "internalQueryProhibitBlockingMergeOnMongoS" : 0,
+                "internalQueryMaxAddToSetBytes" : 104857600,
+                "internalDocumentSourceSetWindowFieldsMaxMemoryBytes" : 104857600
+        },
+        "ok" : 1
+}
+> db.krishna.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "nmae" : 1
+                },
+                "name" : "nmae_1"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "name" : 1
+                },
+                "name" : "name_1"
+        }
+]
+> db.krishna.dropIndex(name_1)
+ReferenceError: name_1 is not defined :
+@(shell):1:1
+> db.krishna.dropIndex('name_1')
+{ "nIndexesWas" : 3, "ok" : 1 }
+> db.krishna.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "nmae" : 1
+                },
+                "name" : "nmae_1"
+        }
+]
+> db.krishna.dropIndex('nmae_1')
+{ "nIndexesWas" : 2, "ok" : 1 }
+> db.krishna.getIndexes()
+[ { "v" : 2, "key" : { "_id" : 1 }, "name" : "_id_" } ]
+> db.krishna.find({name:'product 2000'}).explain('executionStats')
+{
+        "explainVersion" : "1",
+        "queryPlanner" : {
+                "namespace" : "krishna.krishna",
+                "indexFilterSet" : false,
+                "parsedQuery" : {
+                        "name" : {
+                                "$eq" : "product 2000"
+                        }
+                },
+                "maxIndexedOrSolutionsReached" : false,
+                "maxIndexedAndSolutionsReached" : false,
+                "maxScansToExplodeReached" : false,
+                "winningPlan" : {
+                        "stage" : "COLLSCAN",
+                        "filter" : {
+                                "name" : {
+                                        "$eq" : "product 2000"
+                                }
+                        },
+                        "direction" : "forward"
+                },
+                "rejectedPlans" : [ ]
+        },
+        "executionStats" : {
+                "executionSuccess" : true,
+                "nReturned" : 1,
+                "executionTimeMillis" : 4,
+                "totalKeysExamined" : 0,
+                "totalDocsExamined" : 4999,
+                "executionStages" : {
+                        "stage" : "COLLSCAN",
+                        "filter" : {
+                                "name" : {
+                                        "$eq" : "product 2000"
+                                }
+                        },
+                        "nReturned" : 1,
+                        "executionTimeMillisEstimate" : 0,
+                        "works" : 5001,
+                        "advanced" : 1,
+                        "needTime" : 4999,
+                        "needYield" : 0,
+                        "saveState" : 5,
+                        "restoreState" : 5,
+                        "isEOF" : 1,
+                        "direction" : "forward",
+                        "docsExamined" : 4999
+                }
+        },
+        "command" : {
+                "find" : "krishna",
+                "filter" : {
+                        "name" : "product 2000"
+                },
+                "$db" : "krishna"
+        },
+        "serverInfo" : {
+                "host" : "DESKTOP-AA08Q7S",
+                "port" : 27017,
+                "version" : "5.0.6",
+                "gitVersion" : "212a8dbb47f07427dae194a9c75baec1d81d9259"
+        },
+        "serverParameters" : {
+                "internalQueryFacetBufferSizeBytes" : 104857600,
+                "internalQueryFacetMaxOutputDocSizeBytes" : 104857600,
+                "internalLookupStageIntermediateDocumentMaxSizeBytes" : 104857600,
+                "internalDocumentSourceGroupMaxMemoryBytes" : 104857600,
+                "internalQueryMaxBlockingSortMemoryUsageBytes" : 104857600,
+                "internalQueryProhibitBlockingMergeOnMongoS" : 0,
+                "internalQueryMaxAddToSetBytes" : 104857600,
+                "internalDocumentSourceSetWindowFieldsMaxMemoryBytes" : 104857600
+        },
+        "ok" : 1
+}
+> db.krishna.find({name:'product 2000'})
+{ "_id" : ObjectId("62148bb839303fdd5fe9f016"), "name" : "product 2000", "price" : 2000 }
+> db.krishna.find({_id:ObjectId("62148bb839303fdd5fe9f016")}).explain('executionstats')
+Error: explain failed: {
+        "ok" : 0,
+        "errmsg" : "Enumeration value 'executionstats' for field 'explain.verbosity' is not a valid value.",
+        "code" : 2,
+        "codeName" : "BadValue"
+} :
+_getErrorWithCode@src/mongo/shell/utils.js:25:13
+throwOrReturn@src/mongo/shell/explainable.js:25:19
+constructor/this.finish@src/mongo/shell/explain_query.js:176:24
+DBQuery.prototype.explain@src/mongo/shell/query.js:534:12
+@(shell):1:1
+> db.krishna.find({_id:ObjectId("62148bb839303fdd5fe9f016")}).explain('executionStats')
+{
+        "explainVersion" : "1",
+        "queryPlanner" : {
+                "namespace" : "krishna.krishna",
+                "indexFilterSet" : false,
+                "parsedQuery" : {
+                        "_id" : {
+                                "$eq" : ObjectId("62148bb839303fdd5fe9f016")
+                        }
+                },
+                "maxIndexedOrSolutionsReached" : false,
+                "maxIndexedAndSolutionsReached" : false,
+                "maxScansToExplodeReached" : false,
+                "winningPlan" : {
+                        "stage" : "IDHACK"
+                },
+                "rejectedPlans" : [ ]
+        },
+        "executionStats" : {
+                "executionSuccess" : true,
+                "nReturned" : 1,
+                "executionTimeMillis" : 0,
+                "totalKeysExamined" : 1,
+                "totalDocsExamined" : 1,
+                "executionStages" : {
+                        "stage" : "IDHACK",
+                        "nReturned" : 1,
+                        "executionTimeMillisEstimate" : 0,
+                        "works" : 2,
+                        "advanced" : 1,
+                        "needTime" : 0,
+                        "needYield" : 0,
+                        "saveState" : 0,
+                        "restoreState" : 0,
+                        "isEOF" : 1,
+                        "keysExamined" : 1,
+                        "docsExamined" : 1
+                }
+        },
+        "command" : {
+                "find" : "krishna",
+                "filter" : {
+                        "_id" : ObjectId("62148bb839303fdd5fe9f016")
+                },
+                "$db" : "krishna"
+        },
+        "serverInfo" : {
+                "host" : "DESKTOP-AA08Q7S",
+                "port" : 27017,
+                "version" : "5.0.6",
+                "gitVersion" : "212a8dbb47f07427dae194a9c75baec1d81d9259"
+        },
+        "serverParameters" : {
+                "internalQueryFacetBufferSizeBytes" : 104857600,
+                "internalQueryFacetMaxOutputDocSizeBytes" : 104857600,
+                "internalLookupStageIntermediateDocumentMaxSizeBytes" : 104857600,
+                "internalDocumentSourceGroupMaxMemoryBytes" : 104857600,
+                "internalQueryMaxBlockingSortMemoryUsageBytes" : 104857600,
+                "internalQueryProhibitBlockingMergeOnMongoS" : 0,
+                "internalQueryMaxAddToSetBytes" : 104857600,
+                "internalDocumentSourceSetWindowFieldsMaxMemoryBytes" : 104857600
+        },
+        "ok" : 1
+}
+>

@@ -1,0 +1,3 @@
+// ebery tag is object in DOM.
+
+// there are four method to access

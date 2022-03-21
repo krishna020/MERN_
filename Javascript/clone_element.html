@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<ul id="menu">
+		<li>home</li>
+		<li>service</li>
+		<li>about</li>
+	</ul>
+	<script>
+		let menu=document.getElementById("menu");
+		let cl=menu.cloneNode(true);
+		cl.id="mobile";
+		//console.log(cl);
+		document.body.appendChild(cl);
+
+		
+		
+	</script>
+
+</body>
+</html>

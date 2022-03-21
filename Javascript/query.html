@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<!-- <script src="JS/select_id .js"></script> -->
+</head>
+<body>
+	<h2>Heading1</h2>
+	<div>
+		<p class="intro">paragraph1</p>
+		<h2 class="intro">heading 2</h2>
+		<p>paragraph2</p>
+		<h2>heading3</h2>
+		<p class="intro">paragraph3</p>
+	</div>
+	<script>
+		let ele=document.querySelectorAll("p.intro");
+		ele.innerHTML="hello";
+		//console.log(ele);
+		 for(let i=0;i<ele.length;i++)
+		 {
+		 	ele[i].innerHTML="hello";
+		}
+
+		 
+	</script>
+
+</body>
+</html>

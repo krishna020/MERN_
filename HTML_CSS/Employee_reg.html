@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Employee_Registration</title>
+</head>
+
+<body>
+	<center><p> Employee Registration form</p></center>
+	<hr>
+	<label>First_Name :</label>
+	<input type="text" name="First_Name" placeholder="Rahul"><br>
+	<label>Middle_Name :</label>
+	<input type="text" name="Middle_Name" placeholder="Asharfi"><br>
+	<label>Last_Name :</label>
+	<input type="text" name="Last_Name" placeholder="Sahu"><br>
+	<div>
+		<label>
+			Department:
+		</label>
+		<select>
+			<option value="CSE" selected>CSE</option>
+			<option value="MECH">MECH</option>
+			<option value="IT">IT</option>
+			<option value="EC">EC</option>
+		</select> 
+		<br>
+		<br>
+		<label>
+			Gender:
+		</label>
+		<br>
+
+		<input type="checkbox" name="Gender" value="Male">
+		<label>Male</label><br>
+		<input type="checkbox" name="Gender" value="Female">
+		<label>Femle</label><br>
+		<input type="checkbox" name="Gender" value="other">
+		<label>other</label><br>
+	</div>
+	<label>
+		Phone:
+	</label>
+	<input type="text" name="Country_code" placeholder="Country_code" value="+91" size="2">
+	<input type="tel" name="Phone" size="25" pattern="[0-9]{4}-[0-9]{6}" placeholder="1234-567890" required>
+	<br>
+	<br>
+	Current Address:
+	<textarea cols="50" rows="20" placeholder="Current-address" value="Address" required></textarea>
+	<br>
+	<br>
+	<label for="MYFilerop your Resume"></label>
+	<input type="file" id="myfile" name="myfile"><br><br>
+
+
+</body>
+</html>

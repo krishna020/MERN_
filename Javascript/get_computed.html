@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Document</title>
+	<style>
+		#btn{
+			background-color: red;
+			color: white;
+
+		}
+	</style>
+	
+</head>
+<body>
+	<button id="btn">Submit</button>
+	<script>
+		
+		let bid=document.getElementById("btn");
+		let css=getComputedStyle(bid);
+		//console.log(css); complete with by default
+		console.log(css.color);
+
+	</script>
+
+</body>
+</html>
